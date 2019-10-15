@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>游戏列表</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- checkbox radio -->
+    <link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <!-- datapicker -->
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <script src="../js/jquery.min.js" language="javascript" type="text/javascript"></script>
+    <style type="text/css">
+        .dataTable td img {
+            width: 4rem;
+        }
+
+        .table font {
+            font-weight: bold;
+        }
+
+        .table tbody tr td:first-child {
+            text-align: center;
+        }
+
+        .btn-group-lg > .btn, .btn-lg {
+            padding: 4px 10px;
+            font-size: 14px;
+        }
+
+        .radio {
+            display: inline-block;
+            padding-right: 8px;
+        }
+
+        .loadingdiv {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>游戏列表</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="table_data_tables.html#">选项1</a>
+                                </li>
+                                <li>
+                                    <a href="table_data_tables.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="addGameInfo()">新增</button>                        
+                        <table class="table table-striped table-bordered table-hover dataTables-example" id="dataTable22">
+                            <thead>
+                                <tr>
+                                    <th>平台</th>
+                                    <th>名称</th>
+                                    <th>购买日期</th>
+                                    <th>金额</th>
+                                    <th>备注</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="datatbody">
+                                <tr>
+                                    <td colspan="6">
+                                        <!--正在加载信息列表……-->
+                                        <div class="progress progress-striped active" style="width:200px; margin:0 auto; margin-top:20px;">
+                                            <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <div style="line-height:35px;">正在加载中......</div>
+                                        <!--正在加载信息列表……-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">游戏信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="loadingdiv">
+                        <!--正在加载信息列表……-->
+                        <div class="progress progress-striped active" style="width:200px; margin:0 auto; margin-top:20px;">
+                            <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                        <div style="line-height:35px;">正在加载中......</div>
+                        <!--正在加载信息列表……-->
+                    </div>
+                    <form class="form-horizontal" style="display: none;">
+                        <input type="hidden" id="hid_id" value="">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">平台：</label>
+                            <div class="col-sm-8">
+                                <div class="radio">
+                                    <input type="radio" name="rad_console" id="radPC" value="PC" checked="">
+                                    <label for="rad_console">PC</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="rad_console" id="radPS4" value="PS4">
+                                    <label for="rad_console">PS4</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="rad_console" id="radSwitch" value="Switch">
+                                    <label for="rad_console">Switch</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="rad_console" id="radXBox" value="XBox">
+                                    <label for="rad_console">XBox</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">名称：</label>
+                            <div class="col-sm-8">
+                                <input id="txt_name" type="text" placeholder="游戏名称" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group" id="data_1">
+                            <label class="col-sm-3 control-label">购买日期：</label>
+                            <div class="col-sm-8">
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input id="txt_buydate" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">价格：</label>
+                            <div class="col-sm-8">
+                                <div class="input-group m-b">
+                                    <span class="input-group-addon">&yen;</span>
+                                    <input id="txt_price" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注：</label>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" onclick="saveinfo()">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <!-- Data Tables -->
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <!-- Data picker -->
+    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+    <!-- Sweet alert -->
+    <script src="js/plugins/sweetalert/sweetalert_new.min.js"></script>
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function () {
+            //$('.dataTables-example').dataTable();
+        });
+
+        $(function(){
+            BindData();
+            $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+        });
+
+        function BindData() {
+            $.ajax({
+                type: "post",
+                url: "../Handler/Handler.ashx?ct=GetNewGameList&mWhere=",
+                success: function (result) {
+                    //alert(result);return;
+                    if (result.length > 0) {
+                        $("#datatbody").html("");
+                        var datatable = $("#dataTable22").dataTable();
+                        if (datatable) {
+                         datatable.fnClearTable();    //清空数据
+                         datatable.fnDestroy();         //销毁datatable
+                        }
+                        gamejson = $.parseJSON(result);
+                        //绑定数据
+                        for (var i = 0; i < gamejson.length; i++) {
+                            $("#datatbody").append('<tr><td>'+ consoletext(gamejson[i].console) +'</td>'
+                                            +'<td>'+ gamejson[i].name +'</td>'
+                                            +'<td>'+ gamejson[i].buydate + '</td>'
+                                            +'<td>'+ gamejson[i].price +'</td>'
+                                            + '<td>无</td><td align="center"><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" data-mid="' + gamejson[i].id + '" onclick="showinfobyid(' + gamejson[i].id + ')"><i class="fa fa-paste"></i> 编辑</button>'
+                                            + ' <button class= "btn btn-danger btn-lg" onclick="delGame(' + gamejson[i].id +')" > <i class="fa fa-trash"></i> 删除</button></td ></tr > ');
+                        }
+                        $("#dataTable22").DataTable({
+                        	"order": [[ 2, 'desc' ]]
+                        });
+                    }
+                },
+                error: function (err) {
+                    alert("查询错误");
+                }
+            });
+        }
+
+        function showinfobyid(mid)
+        {
+            clearTable();
+            $.ajax({
+                type: "post",
+                url: "../Handler/Handler.ashx?ct=GetGameInfo&id=" + mid,
+                success: function (result) {
+                    //alert(result);return;
+                    if (result.length > 0) {
+                        gamejson = $.parseJSON(result);
+                        //绑定数据
+                        $("input[name='rad_console'][value="+gamejson[0].console+"]").attr("checked",true);
+                        $("#txt_name").val(gamejson[0].name);
+                        $("#txt_buydate").val(gamejson[0].buydate);
+                        $("#txt_price").val(gamejson[0].price);
+                        $("#txt_remark").val(gamejson[0].remark);
+                        $("#hid_id").val(gamejson[0].id);
+                        $(".loadingdiv").hide();
+                        $(".form-horizontal").show();
+                    }
+                },
+                error: function (err) {
+                    swal({
+                        title: "查询错误！",
+                        type: "error",
+                        text: " ",
+                        buttons: false
+                    });
+                }
+            });
+        }
+        var svstr = "";
+        function saveinfo()
+        {
+            var mid = $("#hid_id").val();
+            svstr = "";
+            $("input[id*=txt_]").each(function () {
+                svstr += $(this).attr("id").split('_')[1] + "|" + $(this).val() + "@";
+            });
+            svstr += "console|" + $('input:radio[name="rad_console"]:checked').val() + "@";
+            svstr = svstr.substr(0, svstr.length - 1);
+            var murl = "../Handler/Handler.ashx?ct=UpdGameInfo&svstr=" + svstr + "&id=" + mid;
+            if (mid == "")
+                murl = "../Handler/Handler.ashx?ct=AddGameInfo&svstr=" + svstr;
+            $.ajax({
+                type: "post",
+                url: murl,
+                success: function (result) {
+                    if (result != "0")
+                    {
+                        BindData();//刷新列表
+                        swal({
+                            title: "保存成功！",
+                            text:" ",
+                            buttons: false
+                        });
+                        $('#myModal').modal('hide');
+                    }
+                    else
+                        swal({
+                            title: "保存失败！",
+                            type: "error",
+                            text:" ",
+                            buttons: false
+                        });
+                },
+                error: function (err) {
+                    swal({
+                        title: "保存失败！",
+                        type: "error",
+                        text:" ",
+                        buttons: false
+                    });
+                }
+            });
+        }
+        function clearTable() {
+            $("input[name='rad_console'][value=PC]").attr("checked", true);
+            $("#txt_name").val('');
+            $("#txt_buydate").val('');
+            $("#txt_price").val('');
+            $("#txt_remark").val('');
+            $("#hid_id").val('');
+        }
+        function addGameInfo() {
+            clearTable();
+            $(".loadingdiv").hide();
+            $(".form-horizontal").show();
+        }
+        //删除游戏信息
+        function delGame(mid) {
+            swal("您确定要删除这条信息吗？", {
+                buttons: {
+                    cancel: "取消",
+                    ok: "确定",
+                },
+            })
+                .then((value) => {
+                    switch (value) {
+                        case "cancel":
+                            break;
+                        case "ok":
+                            $.ajax({
+                                type: "post",
+                                url: "../Handler/Handler.ashx?ct=DelGameInfo&id=" + mid,
+                                success: function (result) {
+                                    //alert(result);return;
+                                    if (result.length > 0) {
+                                        BindData();//刷新列表
+                                        swal("删除成功！", "您已经永久删除了这条信息。", "success");
+                                    }
+                                },
+                                error: function (err) {
+                                    swal({
+                                        title: "删除失败！",
+                                        type: "error",
+                                        text: " ",
+                                        buttons: false
+                                    });
+                                }
+                            });
+                            break;
+                    }
+                });
+
+
+            //swal({
+            //    title: "您确定要删除这条信息吗",
+            //    text: "删除后将无法恢复，请谨慎操作！",
+            //    type: "warning",
+            //    showCancelButton: true,
+            //    confirmButtonColor: "#DD6B55",
+            //    confirmButtonText: "是的，我要删除！",
+            //    cancelButtonText: "让我再考虑一下…",
+            //    closeOnConfirm: false,
+            //    closeOnCancel: false
+            //},
+            //    function (isConfirm) {
+            //        if (isConfirm) {
+            //            $.ajax({
+            //                type: "post",
+            //                url: "../Handler/Handler.ashx?ct=DelGameInfo&id=" + mid,
+            //                success: function (result) {
+            //                    //alert(result);return;
+            //                    if (result.length > 0) {
+            //                        swal("删除成功！", "您已经永久删除了这条信息。", "success");
+            //                    }
+            //                },
+            //                error: function (err) {
+            //                    swal({
+            //                        title: "删除失败！",
+            //                        type: "error",
+            //                        text: " ",
+            //                        buttons: false
+            //                    });
+            //                }
+            //            });
+            //        } else {
+            //            //swal("已取消", "您取消了删除操作！", "error");
+            //        }
+            //    });
+        }
+        function consoletext(str)
+        {
+            switch(str)
+            {
+                case "PC":
+                    return '<font style="color:#212529">' +  str + '</font>';
+                    break;
+                case "PS4":
+                    return '<font style="color:#024097">' +  str + '</font>';
+                    break;
+                case "Switch":
+                    return '<font style="color:#e70012">' +  str + '</font>';
+                    break;
+                case "Xbox":
+                    return '<font style="color:#107c0d">' +  str + '</font>';
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
