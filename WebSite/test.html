@@ -1,0 +1,100 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>many little make a miracle</title>
+<script src="js/jquery.min.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+	$(function(){
+		var jeMin = 10;
+		var jeMax = 520;
+		var jeDes = 10;
+		var svjearr = new Array(20,50);
+		for(var i = jeMin;i<=jeMax;i+=jeDes)
+		{
+			if($.inArray(i, svjearr)>=0)
+				$("#planb").append("<li class='li_pon'>" + i+"</li>");
+			else
+				$("#planb").append("<li>" + i+"</li>");
+		}
+        //alert(1);
+        //$.ajax({
+        //    type: "POST",
+        //    url: "../WebService.asmx/GetSvstr",
+        //    dataType: "json",
+        //    data: {},
+        //    success: function (test) {
+        //        alert(test);
+        //    },
+        //});
+        //$.ajax({
+        //    type: "post",
+        //    contentType: "application/json",
+        //    url: "WebService.asmx/HelloWorld",
+        //    dataType: "json",
+        //    success: function (result) {
+        //        //alert(result.d);
+        //        alert(333);
+        //    }
+        //}); 
+        //alert(2);
+		$('.ul_plan li').bind('click', function(event) {
+			    /* 在添加标签的同时给添加的标签绑定点击事件 */
+			    if(confirm("你确定这次要存入金额"+$(this).text()+"吗？"))
+			    	alert("恭喜你存入成功！");
+
+  			});
+    });
+
+    function test() {
+        //$.ajax({
+        //    type: "post",
+        //    url: "WebService.asmx/GetSvstr",
+        //    success: function (result) {
+        //        alert(result);
+        //    },
+        //    error: function (err) {
+        //        alert("错误");
+        //    }
+        //}); 
+
+        $.ajax({
+            type: "post",
+            url: "Handler/Handler.ashx?ct=Getuserid",
+            success: function (result) {
+                alert(result);
+            },
+            error: function (err) {
+                alert("错误");
+            }
+        }); 
+        //$.ajax({
+        //    type: "post", //要用post方式                 
+        //    url: "http://localhost/worktest/WebService.asmx/GetSvstr",//方法所在页面和方法名
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "json",
+        //    success: function (data) {
+        //        alert(data.d);//返回的数据用data.d获取内容
+        //    },
+        //    error: function (err) {
+        //        alert(err);
+        //    }
+        //});
+    }
+</script>    
+<style type="text/css">
+	.ul_plan{width:90%; min-width:480px; display: block;border-top:solid 1px #333;border-left:solid 1px #333; padding: 0; margin:40px auto; display:none; }
+	.ul_plan li {width: 25%;min-width: 80px;  height: 160px; margin:0;padding: 0; display: inline-block; border-bottom: solid 1px #333;border-right:solid 1px #333; line-height: 160px; text-align: center; background: #EEE685; box-sizing: border-box; font-size: 60px;}
+	li.li_pon{background: #EE9A00;}
+	.ul_plan li:hover { background: #fff; }
+</style>
+</head>
+<body>
+<div>
+    <button value="商量好sad" onclick="test()">商量好sad</button>
+	<ul id="planb" class="ul_plan">
+		<!-- <li>10</li><li>20</li><li>30</li><li>40</li><li>50</li><li>60</li><li>70</li><li>80</li><li>90</li><li>20</li><li>30</li><li>40</li><li>10</li><li>20</li><li>30</li><li>40</li><li>10</li><li>20</li><li>30</li><li>40</li><li>10</li><li>20</li><li>30</li><li>40</li> -->
+	</ul>
+</div>
+</body>
+</html>

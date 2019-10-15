@@ -1,0 +1,190 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<meta name="keywords" content="深圳恒邦洁环境技术股份有限公司,恒邦洁,污水处理,铜在线回收" />
+<title>深圳恒邦洁环境技术股份有限公司</title>
+<link href="style/main.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/main.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="fbox">
+	<table>
+		<td valign="top">
+			<img id="zxkfbtn" src="image/zxkfoff.png" alt="在线客服" />
+		</td>
+		<td>
+			<div class="serbox">
+				<div class="serv">
+					0756-2278023<br>
+					周一至周五09:00-18:00<br>
+					<div class="qqcon">
+					<span><a href="tencent://message/?uin=904527655&Site=sc.chinaz.com&Menu=yes">客服一</a></span><br>
+					<span><a href="tencent://message/?uin=103266549&Site=sc.chinaz.com&Menu=yes">客服二</a></span><br>
+					<span><a href="tencent://message/?uin=931768488&Site=sc.chinaz.com&Menu=yes">客服三</a></span><br>
+					</div>
+					广告投放 渠道联系
+				</div>
+			</div>
+		</td>
+	</table>
+</div>
+<div id="mainbox">
+<div class="menu">
+	<div class="logo"><img src="image/logo.png" height="65" width="363" title="timestempo" /></div>
+	<ul>
+		<li><a href="index.html" style="background: url(image/menuon.png); color:#5adc44;">首页</a></li>
+		<li><a href="profile.html">公司概况</a></li>
+		<li><a href="research.html">技术与研发</a></li>
+		<li><a href="industry.html">应用行业</a></li>
+		<li><a href="case.html">工程案例</a></li>
+		<li><a href="contact.html">联系我们</a></li>
+	</ul>
+</div>
+<div class="banner">
+	<div class="banshow">
+		<ul class="ulban">
+			<li style="background: url(image/banner.jpg) center top no-repeat"></li>
+			<li style="background: url(image/banner02.jpg) center top no-repeat"></li>
+			<li style="background: url(image/banner03.jpg) center top no-repeat"></li>
+			<li style="background: url(image/banner.jpg) center top no-repeat"></li>
+		</ul>
+		<ul class="ban_btnul" onmouseover="swtautoban(1)" onmouseout="swtautoban(0)">
+			<li style="background:url(image/ban_btnon.png);" class="liban" id="liban1" onclick="cban('1')"></li>
+			<li class="liban" id="liban2" onclick="cban('2')"></li>
+			<li class="liban" id="liban3" onclick="cban('3')"></li>
+		</ul>
+	</div>
+</div>
+<script>
+	// var ddClick=false;
+	// $(document).ready(function(){
+	//   $(".ddd").click(function(){
+	//   		if(ddClick) return;
+	// 		ddClick = true;
+	//   		if($(".ulban").css("left") == "-5760px")
+	// 			$(".ulban").css("left","0px");
+	//   		var ileft = $(".ulban").css("left").replace("px","");
+	// 		$(".ulban").animate({left:parseInt(ileft)-1920},"slow",function (){ddClick = false;});
+			
+	// 	});		
+	// });
+var kfClick=false;
+var ter;
+var terdur = 2;
+var ddClick=false;
+$(document).ready(function(){
+
+	ter = setInterval("autocban()",4000);
+});
+function autocban()
+{
+	if(terdur==4)
+		terdur = 1;
+	cban(terdur+"");
+	terdur++;
+}
+function cban(ind)
+{
+	if(ddClick) return;
+	terdur = ind;
+	ddClick = true;
+	$(".liban").css("background","url(image/ban_btn.png)");
+	$("#liban"+ind).css("background","url(image/ban_btnon.png)");
+  	if($(".ulban").css("left") == "-5760px")
+		$(".ulban").css("left","0px");
+  	var ileft = $(".ulban").css("left").replace("px","");
+  	switch(ind)
+  	{
+  		case "1":
+  			ileft = 0;
+  			break;
+  		case "2":
+  			ileft = -1920;
+  			break;
+  		case "3":
+  			ileft = -3840;
+  			break;
+  	}
+	$(".ulban").animate({left:ileft},"slow",function (){ddClick = false;});
+}
+function swtautoban(swtb)
+{
+	if(swtb == 1)
+		window.clearInterval(ter);
+	else
+		ter = setInterval("autocban()",4000);
+}
+</script>
+<div class="content">
+	<table class="neckmenu">
+		<tr>
+			<td><a href="profile.html" style="background-image:url(image/nm_ywly.jpg)"></a></td>
+			<td><a href="research.html" style="background-image:url(image/nm_jsyf.jpg)"></a></td>
+			<td><a href="industry.html" style="background-image:url(image/nm_yyhy.jpg)"></a></td>
+			<td><a href="case.html" style="background-image:url(image/nm_gcal.jpg); margin:0;"></a></td>
+		</tr>
+	</table>
+
+	<table class="idctb">
+		<tr>
+			<td style="padding-right: 30px;"><div class="idctitle_l">技术研发<a href="research.html">更多>></a></div></td>
+			<td ><div class="idctitle_r">应用行业<a href="industry.html">更多>></a></div></td>
+		</tr>
+		<tr>
+			<td style="padding-right: 30px;">
+				<ul class="idcon_l">
+					<li><a href="research.html?tp=1">HBJ已获得的专利列表</a></li>
+					<li><a href="research.html?tp=2">微蚀刻液电解系统</a></li>
+					<li><a href="research.html?tp=3">酸性蚀刻液点解循环再生系统</a></li>
+					<li><a href="research.html?tp=4">碱性蚀刻液循环再生系统</a></li>
+					<li><a href="research.html?tp=5">金回收/电解铜产品</a></li>
+					<li><a href="research.html?tp=6">HBJ高效微生物</a></li>
+					<li><a href="research.html?tp=7">实用新型多级氧化反应技术</a></li>
+					<li><a href="research.html?tp=8">HBJ活性焦深度处理及中水回用工艺</a></li>
+					<li><a href="research.html?tp=9">HBJ生态河治理技术</a></li>
+					<li style="border: none;"><a href="research.html?tp=10">HBJ-BAF</a></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul class="idcon_r">
+					<li><a href="industry.html?tp=1">制药行业</a></li>
+					<li><a href="industry.html?tp=2">焦化行业</a></li>
+					<li><a href="industry.html?tp=3">皮革行业</a></li>
+					<li><a href="industry.html?tp=4">印染行业</a></li>
+					<li><a href="industry.html?tp=5">电镀行业</a></li>
+					<li style="border: none;"><a href="industry.html?tp=6">其他高污染行业</a></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="idgsjj">
+	<div class="idgsjjcon">
+		<p>《深圳恒邦洁环境技术股份有限公司》于2014年在深圳前海深港合作区注册成立，注册资本壹亿元。公司各发起人立志在中国的环境治理领域创建一家百年老店，以应对日益严重恶化的环境，还子孙后代一个绿水蓝天。</p>
+        <p>在技术支撑方面，深圳恒邦洁公司拥有多年合作的中国科学院和国内著名大学中卓有贡献的专家以及他们的团队作为公司的科学、技术顾问，成立之初就收购了在污水处理邻域的多项专利及招募了污水处理专业的顶尖人士，在废水处理领域达到了先进水平，保证我们在环保各相关领域能不断创新。</p>
+        <a href="profile.html" class="btnmore"></a>
+	</div>
+</div>
+<div id="foot">
+	<table class="fotcon">
+		<tr>
+			<td class="ftdleft"><font style="font-size: 18px;">深圳恒邦洁环境技术股份有限公司</font></td>
+			<td class="ftdright" style=" background: url(image/mark.png) 120px 9px no-repeat; padding-left: 140px;">地址：广东省深圳市福田区深南大道6009号绿景大厦B座28D</td>
+		</tr>
+		<tr>
+			<td class="ftdleft">Copyright @ 深圳恒邦洁环境技术股份有限公司 粤ICP备17077339号</td>
+			<td class="ftdright" style=" background: url(image/phone.png) 120px 9px no-repeat; padding-left: 140px;">电话：0755-23600999</td>
+		</tr>
+		<tr>
+			<td class="ftdleft"><a style="margin-left: 0px;" href="index.html">返回首页</a> / <a href="contact.html">联系我们</a></td>
+			<td class="ftdright"></td>
+		</tr>
+	</table>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.fulled {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(160,160,160,0.8);
+    display: none;
+}
+
+.container {
+    width: 100%;
+    height: 600px;
+}
+
+    .container a {
+        text-decoration: none;
+        color: #0099FF;
+        line-height: 80px;
+        font-size: 30px;
+        text-align: center;
+        display: block;
+    }
+
+.fulled .fix-box {
+    position: relative;
+    margin: 0 auto;
+    margin-top:20%;
+    width: 80%;
+    height: 150px;
+    background: #fff;
+}
+
+    .fulled .fix-box .close {
+        position: absolute;
+        right: 10px;
+        top: 0;
+        color: deeppink;
+        cursor: pointer;
+    }
+.fix-box table {
+    width: 100%;
+    font-size: 30px;
+    line-height: 85px;
+    text-align: center;
+}
+
+    .fix-box table a {
+        color: #EE9A00;
+        text-decoration: none;
+        font-size: 32px;
+    }
+
+        .fix-box table a:visited {
+            color: #EE9A00;
+            text-decoration: none;
+        }
