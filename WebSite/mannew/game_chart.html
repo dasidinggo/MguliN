@@ -53,23 +53,22 @@
         .loadingdiv {
             text-align: center;
         }
-        /*.ibox-title {
-            padding:0px 15px; line-height:48px; height:48px;
+
+        .chartbox {
+            padding-top: 15px;
+            padding-bottom: 15px;
         }
-            .ibox-title h5 {
-                line-height: 48px;
-            }*/
     </style>
     <script type="text/javascript">
 
-    </script>
+</script>
 </head>
 
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins chartbox">
                     <!--正在加载信息列表……-->
                     <div class="ibox-content">
                         <div class="spiner-example">
@@ -87,7 +86,7 @@
                         </div>
                     </div>
                     <!--正在加载信息列表……-->
-                    <div class="echarts" id="echarts-pie-chart"></div>
+                    <div class="echarts" id="echarts-pie-chart" style="height: 300px;"></div>
                 </div>
             </div>
         </div>
@@ -100,53 +99,83 @@
     <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <!-- ECharts -->
-    <script src="js/plugins/echarts/echarts-all.js"></script>
+    <script src="js/plugins/echarts/echarts.min.js"></script>
     <!-- 自定义js -->
     <script src="js/content.js?v=1.0.0"></script>
     <!-- Sweet alert -->
     <script src="js/plugins/sweetalert/sweetalert_new.min.js"></script>
     <!-- Page-Level Scripts -->
     <script>
-        $(function(){
-            var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
-            var pieoption = {
-                title : {
-                    text: '各平台数量占比',
-                    subtext: '童叟无欺',
-                    x:"center",
-                    textStyle:{
-                        fontWeight:"normal"
-                    }
-                },
-                tooltip : {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                },
-                legend: {
-                    orient : 'vertical',
-                    x : 'left',
-                    data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-                },
-                calculable : true,
-                series : [
-                    {
-                        name:'访问来源',
-                        type:'pie',
-                        radius : '55%',
-                        center: ['50%', '60%'],
-                        data:[
-                            {value:335, name:'直接访问'},
-                            {value:310, name:'邮件营销'},
-                            {value:234, name:'联盟广告'},
-                            {value:135, name:'视频广告'},
-                            {value:1548, name:'搜索引擎'}
-                        ]
-                    }
-                ]
-            };
-            pieChart.setOption(pieoption);
-            $(window).resize(pieChart.resize);
+        $(function () {
+            bindData();
+            
         });
+
+        function bindData() {
+            $.ajax({
+                type: "post",
+                url: "../Handler/Handler.ashx?ct=GameStatForChart",
+                success: function (result) {
+                    //alert(result); return;
+                    if (result.length > 0) {
+                        $(".ibox-content").hide();//隐藏加载动画
+                        var namearr = [];
+                        var namestr = "";
+                        var datastr = "";
+                        gamejson = $.parseJSON(result);
+                        for (var i = 0; i < gamejson.length; i++)
+                        {
+                            namearr.push(gamejson[i].console);
+                            namestr+=""
+                        }
+                        alert(namearr.length);
+                        var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
+                        var pieoption = {
+                            title: {
+                                text: '各平台数量占比',
+                                x: "center",
+                                textStyle: {
+                                    fontWeight: "normal"
+                                }
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+                            legend: {
+                                y: 'bottom',
+                                data: namearr
+                            },
+                            calculable: true,
+                            series: [
+                                {
+                                    name: '平台数量占比',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '50%'],
+                                    data: [
+                                        { value: 335, name: '直接访问' },
+                                        { value: 310, name: '邮件营销' },
+                                        { value: 234, name: '联盟广告' }
+                                    ]
+                                }
+                            ],
+                            color: ["#212529", "#024097", "#e70012", "#107c0d"]
+                        };
+                        pieChart.setOption(pieoption);
+                        $(window).resize(pieChart.resize);
+                    }
+                },
+                error: function (err) {
+                    swal({
+                        title: "查询错误！",
+                        type: "error",
+                        text: " ",
+                        buttons: false
+                    });
+                }
+            });
+        }
     </script>
 </body>
 

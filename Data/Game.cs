@@ -296,6 +296,35 @@ namespace Data
             result = sb.ToString();
             return result;
         }
+
+        //统计各个平台的数量和价格
+        public string GameStatForChart()
+        {
+            string mSql = "";
+            mSql = string.Format("SELECT COUNT(0) AS sl, SUM(price) AS sje, console FROM dbo.tb_game GROUP BY console");
+
+            string result = "";
+            StringBuilder sb = new StringBuilder();
+            result = sb.ToString();
+
+            DataTable dt = sh.getDT(mSql);
+            if (dt.Rows.Count > 0)
+            {
+                sb.Append("[");
+                foreach (DataRow dr in dt.Rows)
+                {
+                    sb.Append("{");
+                    sb.Append("\"console\": \"" + dr["console"].ToString() + "\",");
+                    sb.Append("\"sl\": \"" + dr["sl"].ToString() + "\",");
+                    sb.Append("\"sje\": \"" + dr["sje"].ToString() + "\"");
+                    sb.Append("},");
+                }
+                sb.Remove(sb.Length - 1, 1);
+                sb.Append("]");
+            }
+            result = sb.ToString();
+            return result;
+        }
     }
 
 }

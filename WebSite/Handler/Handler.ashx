@@ -48,8 +48,11 @@ public class Handler : IHttpHandler
                 result = gm.GameCount(GetParam("nf"));
                 break;
             case "DelGameInfo":
-                    result = gm.DelGameInfo(GetParam("id"));
-                    break;
+                result = gm.DelGameInfo(GetParam("id"));
+                break;
+            case "GameStatForChart":
+                result = gm.GameStatForChart();
+                break;
         }
         context.Response.Write(result);
     }
