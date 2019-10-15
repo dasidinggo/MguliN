@@ -1,0 +1,11 @@
+D:\个人文档\项目\MguliN\Data\bin\Debug\Data.dll
+D:\个人文档\项目\MguliN\Data\bin\Debug\Data.pdb
+D:\个人文档\项目\MguliN\Data\obj\Debug\Data.dll
+D:\个人文档\项目\MguliN\Data\obj\Debug\Data.pdb
+D:\个人文档\项目\MguliN\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+E:\项目\MguliN\Data\bin\Debug\Data.dll
+E:\项目\MguliN\Data\bin\Debug\Data.pdb
+E:\项目\MguliN\Data\obj\Debug\Data.csprojAssemblyReference.cache
+E:\项目\MguliN\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+E:\项目\MguliN\Data\obj\Debug\Data.dll
+E:\项目\MguliN\Data\obj\Debug\Data.pdb
