@@ -299,7 +299,7 @@
                     if (result.length > 0) {
                         gamejson = $.parseJSON(result);
                         //绑定数据
-                        $("input[name='rad_console'][value="+gamejson[0].console+"]").attr("checked",true);
+                        $("input[name='rad_console'][value="+gamejson[0].console+"]").prop("checked",true);
                         $("#txt_name").val(gamejson[0].name);
                         $("#txt_buydate").val(gamejson[0].buydate);
                         $("#txt_price").val(gamejson[0].price);
@@ -365,7 +365,8 @@
             });
         }
         function clearTable() {
-            $("input[name='rad_console'][value=PC]").attr("checked", true);
+            $("input[name='rad_console']").prop("checked",false);
+            $("input[name='rad_console'][value=PC]").prop("checked", true);
             $("#txt_name").val('');
             $("#txt_buydate").val('');
             $("#txt_price").val('');
