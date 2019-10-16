@@ -107,8 +107,7 @@
     <!-- Page-Level Scripts -->
     <script>
         $(function () {
-            bindData();
-            
+            bindData();            
         });
 
         function bindData() {
@@ -116,17 +115,16 @@
                 type: "post",
                 url: "../Handler/Handler.ashx?ct=GameStatForChart",
                 success: function (result) {
-                    //alert(result); return;
                     if (result.length > 0) {
                         $(".ibox-content").hide();//隐藏加载动画
-                        var namearr = [];
+                        var namearr = ['PC','PS4','Switch'];
                         var namestr = "";
                         var datastr = "";
                         gamejson = $.parseJSON(result);
                         for (var i = 0; i < gamejson.length; i++)
                         {
-                            namearr.push(gamejson[i].console);
-                            namestr+=""
+                            //namearr.push(gamejson[i].console);
+                            namestr += "";
                         }
                         var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
                         var pieoption = {
@@ -143,7 +141,7 @@
                             },
                             legend: {
                                 y: 'bottom',
-                                data: namearr
+                                data: ['最高气温', '最低气温']
                             },
                             calculable: true,
                             series: [
@@ -162,6 +160,12 @@
                             color: ["#212529", "#024097", "#e70012", "#107c0d"]
                         };
                         pieChart.setOption(pieoption);
+                        alert(111);
+                        //var option1 = pieChart.getOption();
+                        //var legend = { data: namearr };
+                        //option1.legend = legend;
+                        //pieChart.setOption(option1, true);
+
                         $(window).resize(pieChart.resize);
                     }
                 },
