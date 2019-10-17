@@ -117,15 +117,18 @@
                 success: function (result) {
                     if (result.length > 0) {
                         $(".ibox-content").hide();//隐藏加载动画
-                        var namearr = ['PC','PS4','Switch'];
+                        var namearr = [];
+                        var datastr = '[';// '[{ "value": 335, "name": "PC" }, { "value": 1310, "name": "PS4" },{ "value": 234, "name": "Switch" }]';
                         var namestr = "";
-                        var datastr = "";
                         gamejson = $.parseJSON(result);
                         for (var i = 0; i < gamejson.length; i++)
                         {
-                            //namearr.push(gamejson[i].console);
-                            namestr += "";
+                            datastr += '{ "value": ' + gamejson[i].sl +', "name": "' + gamejson[i].console+'" },';
+                            namearr.push(gamejson[i].console);
                         }
+                        datastr = datastr.substr(0,datastr.length - 1);
+                        datastr += ']'
+                        var datajson = $.parseJSON(datastr);
                         var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
                         var pieoption = {
                             title: {
@@ -141,7 +144,7 @@
                             },
                             legend: {
                                 y: 'bottom',
-                                data: ['最高气温', '最低气温']
+                                data: namearr
                             },
                             calculable: true,
                             series: [
@@ -150,17 +153,12 @@
                                     type: 'pie',
                                     radius: '55%',
                                     center: ['50%', '50%'],
-                                    data: [
-                                        { value: 335, name: '直接访问' },
-                                        { value: 310, name: '邮件营销' },
-                                        { value: 234, name: '联盟广告' }
-                                    ]
+                                    data: datajson
                                 }
                             ],
                             color: ["#212529", "#024097", "#e70012", "#107c0d"]
                         };
                         pieChart.setOption(pieoption);
-                        alert(111);
                         //var option1 = pieChart.getOption();
                         //var legend = { data: namearr };
                         //option1.legend = legend;
