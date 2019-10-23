@@ -8,12 +8,13 @@ using System.Data;
 using System.Collections;
 using System.Text;
 
-public class Handler : IHttpHandler
+public class Handler : BaseHandler
 {
     HttpContext dfcontext;
     Data.Game gm = new Data.Game();
     string sql = ConfigurationSettings.AppSettings["ConnectionString"].ToString();
-    public void ProcessRequest(HttpContext context)
+
+    public override void OnLoad(HttpContext context)
     {
         context.Response.ContentType = "text/html";
         //context.Request.ContentType="application/x-www-form-urlencoded; charset=UTF-8";
@@ -55,14 +56,6 @@ public class Handler : IHttpHandler
                 break;
         }
         context.Response.Write(result);
-    }
-
-    public bool IsReusable
-    {
-        get
-        {
-            return false;
-        }
     }
 
     private string GetParam(string key)
