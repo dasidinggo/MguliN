@@ -86,7 +86,29 @@
                         </div>
                     </div>
                     <!--正在加载信息列表……-->
-                    <div class="echarts" id="echarts-pie-chart" style="height: 300px;"></div>
+                    <div class="echarts" id="gameSL-chart" style="height: 300px;"></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins chartbox">
+                    <!--正在加载信息列表……-->
+                    <div class="ibox-content">
+                        <div class="spiner-example">
+                            <div class="sk-spinner sk-spinner-cube-grid">
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                                <div class="sk-cube"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--正在加载信息列表……-->
+                    <div class="echarts" id="gameJE-chart" style="height: 300px;"></div>
                 </div>
             </div>
         </div>
@@ -107,7 +129,7 @@
     <!-- Page-Level Scripts -->
     <script>
         $(function () {
-            bindData();            
+            bindData();
         });
 
         function bindData() {
@@ -118,19 +140,24 @@
                     if (result.length > 0) {
                         $(".ibox-content").hide();//隐藏加载动画
                         var namearr = [];
-                        var datastr = '[';// '[{ "value": 335, "name": "PC" }, { "value": 1310, "name": "PS4" },{ "value": 234, "name": "Switch" }]';
+                        var gameSLstr = '[';
+                        var gameJEstr = '[';
                         var namestr = "";
-                        gamejson = $.parseJSON(result);
-                        for (var i = 0; i < gamejson.length; i++)
-                        {
-                            datastr += '{ "value": ' + gamejson[i].sl +', "name": "' + gamejson[i].console+'" },';
+                        var gamejson = $.parseJSON(result);
+                        for (var i = 0; i < gamejson.length; i++) {
+                            gameSLstr += '{ "value": ' + gamejson[i].sl + ', "name": "' + gamejson[i].console + '" },';
+                            gameJEstr += '{ "value": ' + gamejson[i].sje + ', "name": "' + gamejson[i].console + '" },';
                             namearr.push(gamejson[i].console);
                         }
-                        datastr = datastr.substr(0,datastr.length - 1);
-                        datastr += ']'
-                        var datajson = $.parseJSON(datastr);
-                        var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
-                        var pieoption = {
+                        gameSLstr = gameSLstr.substr(0, gameSLstr.length - 1);
+                        gameSLstr += ']'
+                        gameJEstr = gameJEstr.substr(0, gameJEstr.length - 1);
+                        gameJEstr += ']'
+                        var gameSLjson = $.parseJSON(gameSLstr);
+                        var gameJEjson = $.parseJSON(gameJEstr);
+                        //生成数量饼图
+                        var piegameSL = echarts.init(document.getElementById("gameSL-chart"));
+                        var piegameSLoption = {
                             title: {
                                 text: '各平台数量占比',
                                 x: "center",
@@ -153,18 +180,51 @@
                                     type: 'pie',
                                     radius: '55%',
                                     center: ['50%', '50%'],
-                                    data: datajson
+                                    data: gameSLjson
                                 }
                             ],
                             color: ["#212529", "#024097", "#e70012", "#107c0d"]
                         };
-                        pieChart.setOption(pieoption);
-                        //var option1 = pieChart.getOption();
+                        piegameSL.setOption(piegameSLoption);
+
+                        //生成金额饼图
+                        var piegameJE = echarts.init(document.getElementById("gameJE-chart"));
+                        var piegameJEoption = {
+                            title: {
+                                text: '各平台金额占比',
+                                x: "center",
+                                textStyle: {
+                                    fontWeight: "normal"
+                                }
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+                            legend: {
+                                y: 'bottom',
+                                data: namearr
+                            },
+                            calculable: true,
+                            series: [
+                                {
+                                    name: '各平台金额占比',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '50%'],
+                                    data: gameJEjson
+                                }
+                            ],
+                            color: ["#212529", "#024097", "#e70012", "#107c0d"]
+                        };
+                        piegameJE.setOption(piegameJEoption);
+
+                        //var option1 = piegameSL.getOption();
                         //var legend = { data: namearr };
                         //option1.legend = legend;
-                        //pieChart.setOption(option1, true);
+                        //piegameSL.setOption(option1, true);
 
-                        $(window).resize(pieChart.resize);
+                        $(window).resize(piegameSL.resize);
                     }
                 },
                 error: function (err) {
