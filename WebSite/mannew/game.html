@@ -258,7 +258,7 @@
                 type: "post",
                 url: "../Handler/Handler.ashx?ct=GetNewGameList&mWhere=",
                 success: function (result) {
-                    alert(result);return;
+                    //alert(result);return;
                     if (result.length > 0) {
                         $("#datatbody").html("");
                         var datatable = $("#dataTable22").dataTable();
@@ -282,7 +282,7 @@
                     }
                 },
                 error: function (err) {
-                    window.parent.queryerr(err);
+                    window.parent.queryerr(err,"查询错误！");
                 }
             });
         }
@@ -309,12 +309,7 @@
                     }
                 },
                 error: function (err) {
-                    swal({
-                        title: "查询错误！",
-                        type: "error",
-                        text: " ",
-                        buttons: false
-                    });
+                    window.parent.queryerr(err, "查询错误！");
                 }
             });
         }
@@ -354,12 +349,7 @@
                         });
                 },
                 error: function (err) {
-                    swal({
-                        title: "保存失败！",
-                        type: "error",
-                        text:" ",
-                        buttons: false
-                    });
+                    window.parent.queryerr(err, "保存失败！");
                 }
             });
         }
@@ -401,12 +391,7 @@
                                     }
                                 },
                                 error: function (err) {
-                                    swal({
-                                        title: "删除失败！",
-                                        type: "error",
-                                        text: " ",
-                                        buttons: false
-                                    });
+                                    window.parent.queryerr(err, "删除失败！");
                                 }
                             });
                             break;

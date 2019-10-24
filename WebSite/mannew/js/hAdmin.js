@@ -107,9 +107,28 @@ function SmoothlyMenu() {
 }
 
 //自定义方法
-function queryerr(err) {
+function queryerr(err,errmsg) {
     if (err.status == 405)//登录会话过期
-        alert("请重新登录");
-    else
-        alert("查询错误");
+    {
+        swal("你的登录会话已过期，请重新登录。", {
+            buttons: {
+                ok: "确定",
+            },
+        })
+            .then((value) => {
+                switch (value) {
+                    case "ok":
+                        window.location = "login.html";
+                        break;
+                }
+            });
+    }
+    else {
+        swal({
+            title: errmsg,
+            type: "error",
+            text: " ",
+            buttons: false
+        });
+    }
 }
