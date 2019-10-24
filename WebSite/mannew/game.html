@@ -242,7 +242,7 @@
         $(document).ready(function () {
             //$('.dataTables-example').dataTable();
         });
-
+          
         $(function(){
             BindData();
             $('#data_1 .input-group.date').datepicker({
@@ -253,13 +253,12 @@
                 autoclose: true
             });
         });
-
         function BindData() {
             $.ajax({
                 type: "post",
                 url: "../Handler/Handler.ashx?ct=GetNewGameList&mWhere=",
                 success: function (result) {
-                    //alert(result);return;
+                    alert(result);return;
                     if (result.length > 0) {
                         $("#datatbody").html("");
                         var datatable = $("#dataTable22").dataTable();
@@ -283,7 +282,7 @@
                     }
                 },
                 error: function (err) {
-                    alert("查询错误");
+                    window.parent.queryerr(err);
                 }
             });
         }

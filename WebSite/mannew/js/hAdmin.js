@@ -105,3 +105,11 @@ function SmoothlyMenu() {
         $('#side-menu').removeAttr('style');
     }
 }
+
+//自定义方法
+function queryerr(err) {
+    if (err.status == 405)//登录会话过期
+        alert("请重新登录");
+    else
+        alert("查询错误");
+}

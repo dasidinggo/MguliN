@@ -12,11 +12,12 @@ public class BaseHandler : IHttpHandler, IRequiresSessionState
     public void ProcessRequest(HttpContext context)
     {
         //登录验证
-        //if (context.Session["lgname"] == null)
-        //{
-        //    context.Response.StatusCode = 405;
-        //    context.Response.End();
-        //}
+        if (context.Session["lgname"] == null)
+        {
+            context.Response.StatusCode = 405;
+            context.Response.Write("123");
+            context.Response.End();
+        }
         OnLoad(context);
     }
 
